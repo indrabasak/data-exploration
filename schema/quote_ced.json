@@ -1,0 +1,83 @@
+{
+  "table_name": "QUOTE_CED",
+  "table_description": "Each row represents a unique quote. Once a quote is ordered (sold), it is updated with status and the order number.",
+  "columns": [
+    {
+      "column_name": "QUOTE_NUMBER",
+      "metadata": {
+        "type": "VARCHAR",
+        "nullable": "YES"
+      },
+      "description": "Unique identifier for the quote"
+    },
+    {
+      "column_name": "LINE_ITEM_NUMBER",
+      "metadata": {
+        "type": "NUMBER",
+        "nullable": "YES"
+      },
+      "description": "Unique sequential number for each line within a sales document."
+    },
+    {
+      "column_name": "OFFERING_ID",
+      "metadata": {
+        "type": "VARCHAR",
+        "nullable": "NO"
+      },
+      "description": "Unique identifier for the offering. Links to OFFERING."
+    },
+    {
+      "column_name": "QUOTE_STATUS",
+      "metadata": {
+        "type": "VARCHAR",
+        "nullable": "NO"
+      },
+      "description": "Document the status of the quote. It can be expired, cancelled or ordered.",
+      "sample_values": [
+        "Expired",
+        "Cancelled",
+        "Ordered"
+      ]
+    },
+    {
+      "column_name": "CURRENCY_CODE",
+      "metadata": {
+        "type": "VARCHAR",
+        "nullable": "NO"
+      },
+      "description": "The currency used for this transaction is based on available currencies for the end customer country. use this when asked about country specific"
+    },
+    {
+      "column_name": "PROMOTION_ID",
+      "metadata": {
+        "type": "VARCHAR",
+        "nullable": "NO"
+      },
+      "description": "Customer supplied promo code for this offer"
+    },
+    {
+      "column_name": "PROMOTION_DISCOUNT_AMOUNT",
+      "metadata": {
+        "type": "NUMBER",
+        "nullable": "NO"
+      },
+      "description": "Promotion value applicable for this offer is based on the customer-supplied promo code or the automatic promo in effect"
+    },
+    {
+      "column_name": "PROMOTION_DISCOUNT_PERCENT",
+      "metadata": {
+        "type": "NUMBER",
+        "nullable": "YES"
+      },
+      "description": "A row in this table represents a unique quote sales document header and its unique line items"
+    },
+    {
+      "column_name": "SUB_TOTAL_AMOUNT",
+      "metadata": {
+        "type": "NUMBER",
+        "nullable": "NO"
+      },
+      "description": "Calculated price minus discounts applied"
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "table_name": "PROMOTION",
+  "table_description": "The PROMOTION view includes all promotions offered by Autodesk",
+  "columns": [
+    {
+      "column_name": "PROMOTION_ID",
+      "metadata": {
+        "type": "VARCHAR",
+        "nullable": "NO"
+      },
+      "description": "Unique identifier for a promotion. This column will be used to perform a join with the QUOTE_CED view."
+    },
+    {
+      "column_name": "PROMOTION_CODE",
+      "metadata": {
+        "type": "VARCHAR",
+        "nullable": "NO"
+      },
+      "description": "Short human-readable identifier for this promotion that will be used on the quote or order object."
+    },
+    {
+      "column_name": "PROMOTION_NAME",
+      "metadata": {
+        "type": "VARCHAR",
+        "nullable": "NO"
+      },
+      "description": "Descriptive name for this promotion."
+    },
+    {
+      "column_name": "PROMOTION_START_DATE",
+      "metadata": {
+        "type": "TIMESTAMP_NTZ",
+        "nullable": "NO"
+      },
+      "description": "When the promotion starts"
+    },
+    {
+      "column_name": "PROMOTION_END_DATE",
+      "metadata": {
+        "type": "TIMESTAMP_NTZ",
+        "nullable": "NO"
+      },
+      "description": "When the promotion ends"
+    }
+  ]
+}
