@@ -11,6 +11,14 @@
       "description": "Unique identifier for the quote"
     },
     {
+      "column_name": "QUOTE_DATE",
+      "metadata": {
+        "type": "DATE",
+        "nullable": "NO"
+      },
+      "description": "Document date of the quote"
+    },
+    {
       "column_name": "LINE_ITEM_NUMBER",
       "metadata": {
         "type": "NUMBER",
@@ -78,6 +86,52 @@
         "nullable": "NO"
       },
       "description": "Calculated price minus discounts applied"
+    },
+    {
+      "column_name": "TAX_AMOUNT",
+      "metadata": {
+        "type": "NUMBER",
+        "nullable": "NO"
+      },
+      "description": "Tax amount applicable for this quote line item"
+    },
+    {
+      "column_name": "ORIGINATED_BY",
+      "metadata": {
+        "type": "VARCHAR",
+        "nullable": "YES"
+      },
+      "description": "Persona that originated the document.",
+      "sample_values": [
+        "Customer",
+        "Partner",
+        "Sales"
+      ]
+    },
+    {
+      "column_name": "SALES_CHANNEL",
+      "metadata": {
+        "type": "VARCHAR",
+        "nullable": "YES"
+      },
+      "description": "Which sales channel captured the quote.",
+      "sample_values": [
+        "Agency",
+        "Direct"
+      ]
+    },
+    {
+      "column_name": "SALES_PLATFORM",
+      "metadata": {
+        "type": "VARCHAR",
+        "nullable": "YES"
+      },
+      "description": "Which sales platform captured the quote.",
+      "sample_values": [
+        "BIC",
+        "CPQ",
+        "PWS"
+      ]
     }
   ]
 }

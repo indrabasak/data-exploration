@@ -64,7 +64,7 @@ class Analyzer:
             \n- Always alias selected columns into snake_case names.
             \n- If no column for date exists, skip the date filter instead of guessing.
             \n- If the question asks for a time range, use PROMOTION_START_DATE or QUOTE_DATE if available.
-            \n- A quote is considered 'Ordered' if its quote_status is 'Ordered'.
+            \n- A quote is considered 'Ordered' or 'Sold' if its quote_status is 'Ordered'.
             \n
             \nInstructions:
             \n1. Generate a valid Snowflake SQL query to answer the user question.
@@ -188,13 +188,18 @@ def main():
     # print("\nGenerated SQL:\n", result.get("sql_query"))
     # print("\nSummary:\n", result.get("summary_info"))
     # print("\nAnalysis:\n", result.get("analysis"))
+    # print("===================================================")
+    # user_question = "Which are the top five promotions?"
+    # result = analyzer.answer_question(user_question)
+    # print("\nGenerated SQL:\n", result.get("sql_query"))
+    # print("\nSummary:\n", result.get("summary_info"))
+    # print("\nAnalysis:\n", result.get("analysis"))
     print("===================================================")
-    user_question = "Which are the top five promotions?"
+    user_question = "Based on the past history, suggest a promotion that would result in increased sales next month? Explain why you think so."
     result = analyzer.answer_question(user_question)
     print("\nGenerated SQL:\n", result.get("sql_query"))
     print("\nSummary:\n", result.get("summary_info"))
     print("\nAnalysis:\n", result.get("analysis"))
-
 
 if __name__ == "__main__":
     main()
