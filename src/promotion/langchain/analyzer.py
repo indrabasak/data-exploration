@@ -10,6 +10,7 @@ from sqlalchemy import text
 from llm_util import LlmUtil
 from schema_loader import SchemaLoader
 from snowflake_util import SnowflakeUtil
+from prompt import SQL_GENERATION_PROMPT
 
 load_dotenv()
 
@@ -52,26 +53,7 @@ class Analyzer:
         question = state["question"]
         schema_context = self.schema
         llm = LlmUtil.get_llm()
-        system_prompt = f"""You are a Snowflake SQL assistant.
-            \n\nUse the following database schema definitions to answer questions:
-            \n\n{schema_context}
-            \n
-            \nRules:
-            \n- You MUST only use columns listed in the schema.
-            \n- Always use dot notation to qualify identifiers, such as tableName.columnName (e.g. promotion.promotion_id).
-            \n- Never invent or assume extra columns like created_at or updated_at.
-            \n- When filtering by string values, always use ILIKE (case-insensitive).
-            \n- Always alias selected columns into snake_case names.
-            \n- If no column for date exists, skip the date filter instead of guessing.
-            \n- If the question asks for a time range, use PROMOTION_START_DATE or QUOTE_DATE if available.
-            \n- A quote is considered 'Ordered' or 'Sold' if its quote_status is 'Ordered'.
-            \n
-            \nInstructions:
-            \n1. Generate a valid Snowflake SQL query to answer the user question.
-            \n2. Suggest the best visualization type ("bar", "line", "scatter", "pie").
-            \n3. Suggest which columns should be used for x-axis and y-axis.
-            \n4. Return ONLY valid JSON with keys: sql, viz_type, x, y, title.
-            \n"""
+        system_prompt = SQL_GENERATION_PROMPT.format(schema_context=schema_context)
         response = llm.invoke(
             [
                 {"role": "system", "content": system_prompt},
@@ -183,23 +165,23 @@ class Analyzer:
 
 def main():
     analyzer = Analyzer("schema")
-    # user_question = "How many promotions resulted in sales?"
-    # result = analyzer.answer_question(user_question)
-    # print("\nGenerated SQL:\n", result.get("sql_query"))
-    # print("\nSummary:\n", result.get("summary_info"))
-    # print("\nAnalysis:\n", result.get("analysis"))
+    user_question = "How many promotions resulted in sales?"
+    result = analyzer.answer_question(user_question)
+    print("\nGenerated SQL:\n", result.get("sql_query"))
+    print("\nSummary:\n", result.get("summary_info"))
+    print("\nAnalysis:\n", result.get("analysis"))
     # print("===================================================")
     # user_question = "Which are the top five promotions?"
     # result = analyzer.answer_question(user_question)
     # print("\nGenerated SQL:\n", result.get("sql_query"))
     # print("\nSummary:\n", result.get("summary_info"))
     # print("\nAnalysis:\n", result.get("analysis"))
-    print("===================================================")
-    user_question = "Based on the past history, suggest a promotion that would result in increased sales next month? Explain why you think so."
-    result = analyzer.answer_question(user_question)
-    print("\nGenerated SQL:\n", result.get("sql_query"))
-    print("\nSummary:\n", result.get("summary_info"))
-    print("\nAnalysis:\n", result.get("analysis"))
+    # print("===================================================")
+    # user_question = "Based on the past history, suggest a promotion that would result in increased sales next month? Explain why you think so."
+    # result = analyzer.answer_question(user_question)
+    # print("\nGenerated SQL:\n", result.get("sql_query"))
+    # print("\nSummary:\n", result.get("summary_info"))
+    # print("\nAnalysis:\n", result.get("analysis"))
 
 if __name__ == "__main__":
     main()

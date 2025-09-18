@@ -2,6 +2,7 @@ import os
 
 from azure.identity import DefaultAzureCredential
 from dotenv import load_dotenv
+from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
 from langchain_openai import AzureChatOpenAI
 
 load_dotenv()
@@ -27,10 +28,21 @@ class LlmUtil:
             temperature=0
         )
 
+
 def main():
     llm = LlmUtil.get_llm()
     response = llm.invoke("Tell me a joke")
     print(response.content)
+
+    messages = [
+        SystemMessage(content="You are a helpful assistant."),
+        HumanMessage(content="What is the capital of France?"),
+        AIMessage(content="The capital of France is Paris.")  # This is an example of AIMessage
+    ]
+    response = llm.invoke(messages)
+    print("++++++++++++++++++++++++++++++++")
+    print(response.content)
+
 
 if __name__ == "__main__":
     main()

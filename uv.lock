@@ -37,6 +37,25 @@ wheels = [
 ]
 
 [[package]]
+name = "anthropic"
+version = "0.68.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "anyio" },
+    { name = "distro" },
+    { name = "docstring-parser" },
+    { name = "httpx" },
+    { name = "jiter" },
+    { name = "pydantic" },
+    { name = "sniffio" },
+    { name = "typing-extensions" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/64/46/da44bf087ddaf3f7dbe4808c00c7cde466fe68c4fc9fbebdfc231f4ea205/anthropic-0.68.0.tar.gz", hash = "sha256:507e9b5f627d1b249128ff15b21855e718fa4ed8dabc787d0e68860a4b32a7a8", size = 471584, upload-time = "2025-09-17T15:20:19.509Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/60/32/2d7553184b05bdbec61dd600014a55b9028408aee6128b25cb6f20e3002c/anthropic-0.68.0-py3-none-any.whl", hash = "sha256:ac579ea5eca22a7165b1042e6af57c4bf556e51afae3ca80e24768d4756b78c0", size = 325199, upload-time = "2025-09-17T15:20:17.452Z" },
+]
+
+[[package]]
 name = "anyio"
 version = "4.10.0"
 source = { registry = "https://pypi.org/simple" }
@@ -118,6 +137,9 @@ wheels = [
 ]
 
 [package.optional-dependencies]
+anthropic = [
+    { name = "anthropic" },
+]
 azure = [
     { name = "azure-ai-inference" },
     { name = "azure-ai-projects" },
@@ -414,16 +436,21 @@ version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
     { name = "autogen-agentchat" },
-    { name = "autogen-ext", extra = ["azure", "openai"] },
+    { name = "autogen-ext", extra = ["anthropic", "azure", "openai"] },
     { name = "azure-identity" },
+    { name = "boto3" },
     { name = "datetime" },
     { name = "dotenv" },
     { name = "htbuilder" },
+    { name = "langchain-aws" },
+    { name = "langchain-core" },
     { name = "langchain-openai" },
     { name = "langgraph" },
+    { name = "logging" },
     { name = "panda" },
     { name = "pandas" },
     { name = "pylint" },
+    { name = "requests" },
     { name = "snowflake-sqlalchemy" },
     { name = "sqlalchemy" },
     { name = "streamlit" },
@@ -433,16 +460,21 @@ dependencies = [
 [package.metadata]
 requires-dist = [
     { name = "autogen-agentchat", specifier = ">=0.7.4" },
-    { name = "autogen-ext", extras = ["azure", "openai"], specifier = ">=0.7.4" },
+    { name = "autogen-ext", extras = ["anthropic", "azure", "bedrock", "openai"], specifier = ">=0.7.4" },
     { name = "azure-identity", specifier = ">=1.25.0" },
+    { name = "boto3", specifier = ">=1.40.30" },
     { name = "datetime", specifier = ">=5.5" },
     { name = "dotenv", specifier = ">=0.9.9" },
     { name = "htbuilder", specifier = ">=0.9.0" },
+    { name = "langchain-aws", specifier = ">=0.2.33" },
+    { name = "langchain-core", specifier = ">=0.3.76" },
     { name = "langchain-openai", specifier = ">=0.3.33" },
     { name = "langgraph", specifier = ">=0.6.7" },
+    { name = "logging", specifier = ">=0.4.9.6" },
     { name = "panda", specifier = ">=0.3.1" },
     { name = "pandas", specifier = ">=2.3.2" },
     { name = "pylint", specifier = ">=3.3.8" },
+    { name = "requests", specifier = ">=2.32.5" },
     { name = "snowflake-sqlalchemy", specifier = ">=1.7.7" },
     { name = "sqlalchemy", specifier = ">=2.0.43" },
     { name = "streamlit", specifier = ">=1.49.1" },
@@ -478,6 +510,15 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/fc/f8/98eea607f65de6527f8a2e8885fc8015d3e6f5775df186e443e0964a11c3/distro-1.9.0.tar.gz", hash = "sha256:2fa77c6fd8940f116ee1d6b94a2f90b13b5ea8d019b98bc8bafdcabcdd9bdbed", size = 60722, upload-time = "2023-12-24T09:54:32.31Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/12/b3/231ffd4ab1fc9d679809f356cebee130ac7daa00d6d6f3206dd4fd137e9e/distro-1.9.0-py3-none-any.whl", hash = "sha256:7bffd925d65168f85027d8da9af6bddab658135b840670a223589bc0c8ef02b2", size = 20277, upload-time = "2023-12-24T09:54:30.421Z" },
+]
+
+[[package]]
+name = "docstring-parser"
+version = "0.17.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/b2/9d/c3b43da9515bd270df0f80548d9944e389870713cc1fe2b8fb35fe2bcefd/docstring_parser-0.17.0.tar.gz", hash = "sha256:583de4a309722b3315439bb31d64ba3eebada841f2e2cee23b99df001434c912", size = 27442, upload-time = "2025-07-21T07:35:01.868Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/55/e2/2537ebcff11c1ee1ff17d8d0b6f4db75873e3b0fb32c2d4a2ee31ecb310a/docstring_parser-0.17.0-py3-none-any.whl", hash = "sha256:cf2569abd23dce8099b300f9b4fa8191e9582dda731fd533daf54c4551658708", size = 36896, upload-time = "2025-07-21T07:35:00.684Z" },
 ]
 
 [[package]]
@@ -745,6 +786,21 @@ wheels = [
 ]
 
 [[package]]
+name = "langchain-aws"
+version = "0.2.33"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "boto3" },
+    { name = "langchain-core" },
+    { name = "numpy" },
+    { name = "pydantic" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/21/ed/0ae839d950a29f03357e20e56e503012073b7ad140741b5dd547717d3821/langchain_aws-0.2.33.tar.gz", hash = "sha256:5160043fcacaf56f29b38e4ac58f9bee65872d9ab51b893a1cb7b28388c2e685", size = 118780, upload-time = "2025-09-15T21:05:25.873Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/51/c0/c41e50b5c1c3ddd33218843346b8217cc5312758b67a0a5f232c4a97358c/langchain_aws-0.2.33-py3-none-any.whl", hash = "sha256:92c0b4ddcc5e789b3d61cdf20556aeb75ca5a61e8431356f429227bb2760ca39", size = 143593, upload-time = "2025-09-15T21:05:24.764Z" },
+]
+
+[[package]]
 name = "langchain-core"
 version = "0.3.76"
 source = { registry = "https://pypi.org/simple" }
@@ -849,6 +905,12 @@ sdist = { url = "https://files.pythonhosted.org/packages/62/6f/7d88228b7614fa020
 wheels = [
     { url = "https://files.pythonhosted.org/packages/2d/26/99bc52e1c47fb4b995aece85a5313349a5e2559e4143ee2345d8bd1446ff/langsmith-0.4.27-py3-none-any.whl", hash = "sha256:23708e6478d1c74ac0e428bbc92df6704993e34305fb62a0c64d2fefc35bd67f", size = 384752, upload-time = "2025-09-08T19:01:47.362Z" },
 ]
+
+[[package]]
+name = "logging"
+version = "0.4.9.6"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/93/4b/979db9e44be09f71e85c9c8cfc42f258adfb7d93ce01deed2788b2948919/logging-0.4.9.6.tar.gz", hash = "sha256:26f6b50773f085042d301085bd1bf5d9f3735704db9f37c1ce6d8b85c38f2417", size = 96029, upload-time = "2013-06-04T23:43:22.086Z" }
 
 [[package]]
 name = "markupsafe"
