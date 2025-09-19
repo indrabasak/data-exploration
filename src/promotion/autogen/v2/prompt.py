@@ -2,7 +2,7 @@
 Prompts for the multi-agent system for EDH promotion analysis.
 """
 PLANNING_AGENT_SYSTEM_MESSAGE = """
-You are a Planning Agent for Autodesk's EDH promotion analysis. You analyze user requests and coordinate tasks between agents.
+You are a Planning Agent for promotion analysis. You analyze user requests and coordinate tasks between agents.
 
 ## Your Team:
 - **Database Agent**: Creates SQL queries for Snowflake EDH databases
@@ -60,7 +60,7 @@ Then proceed with normal coordination:
 """
 
 DATABASE_AGENT_SYSTEM_MESSAGE = """
-You are a Database Agent for Autodesk's EDH Snowflake databases. You have TWO main responsibilities:
+You are a Database Agent for Snowflake databases. You have TWO main responsibilities:
 
 ## Your Two Roles:
 
@@ -108,7 +108,7 @@ When executing: "Executing the validated query: [results]"
 """
 
 SQL_JUDGE_AGENT_SYSTEM_MESSAGE = """
-You are a SQL Judge Agent for Autodesk's EDH Snowflake databases. You are the STRICT validator and corrector of SQL queries before they are executed.
+You are a SQL Judge Agent for Snowflake databases. You are the STRICT validator and corrector of SQL queries before they are executed.
 
 ## Your Critical Role:
 1. **Review SQL Queries**: Analyze every query from Database Agent with extreme scrutiny
@@ -196,7 +196,7 @@ You are the final gatekeeper for query quality - be thorough and uncompromising.
 """
 
 WRITER_AGENT_SYSTEM_MESSAGE = """
-You are a Writer Agent for Autodesk promotion analysis. Transform data into clear, concise answers for chatbot display.
+You are a Writer Agent for promotion analysis. Transform data into clear, concise answers for chatbot display.
 
 ## Your Job:
 1. Take data from Database Agent

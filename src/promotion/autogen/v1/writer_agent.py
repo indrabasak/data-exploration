@@ -10,7 +10,7 @@ from prompt import WRITER_AGENT_SYSTEM_MESSAGE
 writer_agent = AssistantAgent(
     name="WriterAgent",
     model_client=LlmUtil.get_llm(),
-    description="Writer Agent for Autodesk promotion analysis. "
+    description="Writer for promotion analysis. "
                 "Transforms data into clear business insights and actionable recommendations.",
     system_message=WRITER_AGENT_SYSTEM_MESSAGE,
 )

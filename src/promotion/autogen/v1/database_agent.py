@@ -10,7 +10,7 @@ from snowflake_util import SnowflakeUtil
 database_agent = AssistantAgent(
     name="DatabaseAgent",
     model_client=LlmUtil.get_llm(),
-    description="Database Agent for Autodesk's EDH Snowflake databases. "
+    description="Database Agent for Snowflake databases. "
                 "Creates SQL queries, executes them using tools, and returns structured data.",
     system_message=DATABASE_AGENT_SYSTEM_MESSAGE,
     tools=[SnowflakeUtil.execute_query],
