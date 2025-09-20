@@ -1,5 +1,5 @@
 """
-EDH Promotion Analysis System
+Promotion Analysis System
 """
 import asyncio
 import os
